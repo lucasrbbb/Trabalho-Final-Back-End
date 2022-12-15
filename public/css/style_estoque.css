@@ -30,7 +30,7 @@ button {
   align-items: center;
 }
 
-.novo span{
+.novo span {
   padding-left: 5px;
 }
 
@@ -332,9 +332,9 @@ input[type="password"] {
   align-items: center;
 }
 
-.custom-select select {
-  display: none; /*hide original SELECT element:*/
-}
+/* .custom-select select {
+  display: none; hide original SELECT element:
+} */
 
 .select-selected {
   background-color: DodgerBlue;
