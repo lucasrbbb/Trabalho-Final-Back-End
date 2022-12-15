@@ -1,0 +1,395 @@
+/* tabela */
+
+body {
+  color: #404e67;
+  background: rgb(201, 218, 255);
+  font-family: "Open Sans", sans-serif;
+}
+
+caption {
+  padding: 20px;
+  color: rgb(77, 77, 77);
+  text-align: left;
+  letter-spacing: 1px;
+  background-color: rgb(122, 188, 255);
+  font-size: 32px;
+}
+
+button {
+  float: right;
+  padding: 12px;
+  background: rgb(58, 139, 58);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.novo {
+  border: rgb(129, 129, 129) solid 1px;
+  display: flex;
+  align-items: center;
+}
+
+.novo span{
+  padding-left: 5px;
+}
+
+button:hover,
+button:focus {
+  background-color: green;
+}
+
+.tabela {
+  width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  border: rgb(104, 104, 104) solid 1px;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table .add {
+  color: #56ff51;
+  display: none;
+}
+table .edit {
+  color: #5f5e5e;
+}
+table .delete {
+  color: #f84b4b;
+}
+
+table .add:hover,
+table .add:focus,
+table .edit:hover,
+table .edit:focus,
+table .delete:hover,
+table .delete:focus {
+  cursor: pointer;
+}
+
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  width: 30%;
+  text-align: left;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 15%;
+}
+
+thead th:nth-child(5) {
+  width: 15%;
+}
+
+thead th:nth-child(6) {
+  width: 10%;
+}
+
+th,
+td {
+  padding: 15px;
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tbody td:nth-child(2) {
+  text-align: left;
+}
+
+thead {
+  background: rgb(209, 227, 233);
+  color: rgb(77, 77, 77);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgb(244, 244, 244);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(209, 227, 233);
+}
+
+/* tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -40px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* modal adicionar */
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+  color: #5f5f5f;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.modal-box {
+  width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
+  align-content: center;
+}
+
+.modal-header {
+  background: rgb(153, 181, 209);
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  grid-row: 1;
+  grid-column: 1 / 3;
+}
+
+.modal-body {
+  padding: 0px;
+  align-self: center;
+  justify-self: center;
+  grid-row: 2;
+  grid-column: 1 / 3;
+}
+
+.modal-body thead {
+  background: rgb(255, 255, 255);
+  color: rgb(32, 32, 32);
+}
+
+.modal-footer {
+  background: rgb(153, 181, 209);
+  position: relative;
+  padding-left: 1vw;
+  display: flex;
+  align-items: center;
+  grid-row: 3;
+  grid-column: 1 / 3;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #f6f6f1;
+  margin: 7% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 1000px;
+  position: relative;
+}
+
+/* Full-width input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.modal button:hover,
+.modal button:focus,
+.modal a:hover,
+.modal a:focus {
+  opacity: 0.8;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  box-shadow: 0px 0px 10px 5px rgba(201, 201, 201, 0.5);
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+  letter-spacing: 1px;
+}
+
+.cancelbtn:hover,
+.cancelbtn:focus {
+  background-color: rgb(255, 27, 27);
+}
+
+.add-new {
+  position: absolute;
+  right: 1vw;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 1vw;
+  color: #5f5f5f;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal a {
+  text-decoration: none;
+  color: #5f5f5f;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+/*SELECT:*/
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  width: 180px;
+  align-items: center;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.campos {
+  width: 100%;
+  height: 30px;
+}
