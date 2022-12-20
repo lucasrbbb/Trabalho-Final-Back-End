@@ -1,26 +1,19 @@
+let isNewItem = true;
+let currentId = 0;
+const units = [];
+const unidade = document.getElementById("unidade");
+const botaoAdd = document.getElementById("addBtn");
+const itemsTable = document.getElementById("itemsTable");
+
+let dados = [];
+
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
   var actions = $("table td:last-child").html();
   // Append table with add row form on add new button click
-  $(".add-new").click(function () {
-    $(this).attr("disabled", "disabled");
-    var index = $("table tbody tr:last-child").index();
-    var row =
-      "<tr>" +
-      '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-      '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-      '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-      "<td>" +
-      actions +
-      "</td>" +
-      "</tr>";
-    $("table").append(row);
-    $("table tbody tr")
-      .eq(index + 1)
-      .find(".add, .edit")
-      .toggle();
-    $('[data-toggle="tooltip"]').tooltip();
-  });
+  // $(".add-new").click(function () {
+
+  // });
   // Add row on add button click
   $(document).on("click", ".add", function () {
     var empty = false;
@@ -43,110 +36,175 @@ $(document).ready(function () {
     }
   });
   // Edit row on edit button click
-  $(document).on("click", ".edit", function () {
-    $(this)
-      .parents("tr")
-      .find("td:not(:last-child,:nth-child(1), :nth-child(3))")
-      .each(function () {
-        $(this).html(
-          '<input type="text" class="form-control" value="' +
-            $(this).text() +
-            '">'
-        );
-      });
-    $(this).parents("tr").find(".add, .edit").toggle();
-    $(".add-new").attr("disabled", "disabled");
+
+  $(document).on("click", ".edit", function (event) {
+    isNewItem = false;
+
+    document.getElementById("modal-title").innerHTML = "Editar Produto";
+
+    currentId = event.target.closest("tr").querySelector("td").innerHTML;
+
+    const data = event.target.closest("tr").querySelectorAll("td");
+
+    const description = data[1].innerHTML;
+    document.getElementById("description").value = description;
+
+    const unit = data[2].innerHTML;
+    document.getElementById("unit").value = unit;
+
+    const cost = data[3].innerHTML;
+    document.getElementById("cost").value = cost;
+
+    const quantity = data[4].innerHTML;
+    document.getElementById("quantity").value = quantity;
+
+    document.getElementById("adicionar").style.display = "block";
   });
 
-  
   // Delete row on delete button click
-  $(document).on("click", ".delete", function () {
-    $(this).parents("tr").remove();
-    $(".add-new").removeAttr("disabled");
+  $(document).on("click", ".delete", function (event) {
+    currentId = event.target.closest("tr").querySelector("td").innerHTML;
+    deletarDados(currentId);
   });
 
   //dropdown
-
 });
 
+//Iniciar modal
 
-// select
+function iniciarModalCadastro() {
+  isNewItem = true;
 
-var x, i, j, l, ll, selElmnt, a, b, c;
-/*look for any elements with the class "custom-select":*/
-x = document.getElementsByClassName("custom-select");
-l = x.length;
-for (i = 0; i < l; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  ll = selElmnt.length;
-  /*for each element, create a new DIV that will act as the selected item:*/
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /*for each element, create a new DIV that will contain the option list:*/
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < ll; j++) {
-    /*for each option in the original select element,
-    create a new DIV that will act as an option item:*/
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function(e) {
-        /*when an item is clicked, update the original select box,
-        and the selected item:*/
-        var y, i, k, s, h, sl, yl;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        sl = s.length;
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < sl; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            yl = y.length;
-            for (k = 0; k < yl; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
-          }
-        }
-        h.click();
-    });
-    b.appendChild(c);
-  }
-  x[i].appendChild(b);
-  a.addEventListener("click", function(e) {
-      /*when the select box is clicked, close any other select boxes,
-      and open/close the current select box:*/
-      e.stopPropagation();
-      closeAllSelect(this);
-      this.nextSibling.classList.toggle("select-hide");
-      this.classList.toggle("select-arrow-active");
+  document.getElementById("modal-title").innerHTML = "Cadastrar Produto";
+
+  document.getElementById("description").value = "";
+  document.getElementById("unit").value = "";
+  document.getElementById("cost").value = "";
+
+  document.getElementById("quantity").value = "";
+  document.getElementById("adicionar").style.display = "block";
+}
+
+function obterUnidades() {
+  fetch("http://localhost:3000/unit")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      dados = data;
+      dados.forEach(function (item) {
+        units[item.id] = item.description;
+
+        const elemento = document.createElement("option");
+        elemento.innerHTML = item.description;
+        elemento.value = item.id;
+        elemento.id = unidade.appendChild(elemento);
+      });
     });
 }
-function closeAllSelect(elmnt) {
-  /*a function that will close all select boxes in the document,
-  except the current select box:*/
-  var x, y, i, xl, yl, arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  xl = x.length;
-  yl = y.length;
-  for (i = 0; i < yl; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i)
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
+
+function listarDados() {
+  while (itemsTable.children.length) {
+    itemsTable.deleteRow(0);
   }
-  for (i = 0; i < xl; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
+  fetch("http://localhost:3000/store/list")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      dados = data;
+      dados.forEach(function (item) {
+        const row = itemsTable.insertRow();
+
+        const code = row.insertCell();
+        code.appendChild(document.createTextNode(item.id));
+
+        const description = row.insertCell();
+        description.appendChild(document.createTextNode(item.description));
+
+        const unit_id = row.insertCell();
+        unit_id.appendChild(document.createTextNode(units[item.unit_id]));
+
+        const cost = row.insertCell();
+        cost.appendChild(document.createTextNode(item.cost));
+
+        const quantity = row.insertCell();
+        quantity.appendChild(document.createTextNode(item.quantity));
+
+        const btn = row.insertCell();
+        const btnHtml = `
+          <a id="editBtn" class="tooltip edit" title="Edit">
+            <i class="material-icons">&#xE254;</i>
+            <span class="tooltiptext">Editar</span>
+          </a>
+          <a class="tooltip delete" title="Delete">
+            <i class="material-icons">&#xE872;</i>
+            <span class="tooltiptext">Excluir</span>
+          </a>`;
+        btn.innerHTML = btnHtml;
+      });
+    });
 }
-/*if the user clicks anywhere outside the select box,
-then close all select boxes:*/
-document.addEventListener("click", closeAllSelect);
+
+function postarDados(description, unit_id, cost, quantity) {
+  fetch("http://localhost:3000/store/save", {
+    method: "POST",
+    body: JSON.stringify({
+      description: description,
+      unit_id: unit_id,
+      cost: cost,
+      quantity: quantity,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      listarDados();
+    });
+}
+
+function editarDados(id, description, unit_id, cost, quantity) {
+  fetch("http://localhost:3000/store/update", {
+    method: "PUT",
+    body: JSON.stringify({
+      id: id,
+      description: description,
+      unit_id: unit_id,
+      cost: cost,
+      quantity: quantity,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      listarDados();
+    });
+}
+
+function deletarDados(id) {
+  fetch(`http://localhost:3000/store/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(() => listarDados());
+}
+
+botaoAdd.addEventListener("click", function () {
+  const description = document.getElementById("description").value;
+  const cost = document.getElementById("cost").value;
+  const quantity = document.getElementById("quantity").value;
+
+  if (isNewItem) {
+    postarDados(description, unidade.value, cost, quantity);
+  } else {
+    editarDados(currentId, description, unidade.value, cost, quantity);
+  }
+});
+
+obterUnidades();
+listarDados();

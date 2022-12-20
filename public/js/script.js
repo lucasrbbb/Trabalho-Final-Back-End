@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Your code to run since DOM is loaded and ready
 });
 
-
 // login
 
 // Get the modal
@@ -63,5 +62,3 @@ window.onclick = function (event) {
     modalC.style.display = "none";
   }
 };
-
-

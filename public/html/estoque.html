@@ -32,11 +32,7 @@
       <table>
         <caption>
           Estoque
-          <button
-            type="button"
-            class="novo"
-            onclick="document.getElementById('adicionar').style.display='block'"
-          >
+          <button type="button" class="novo" onclick="iniciarModalCadastro()">
             <i class="material-icons">&#xe147;</i><span>Novo</span>
           </button>
         </caption>
@@ -51,102 +47,17 @@
             <th>Ações</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>001</td>
-            <td>Batata</td>
-            <td>kilos</td>
-            <td>1.99</td>
-            <td>200</td>
-            <td>
-              <a class="tooltip add" title="Add">
-                <i class="material-icons">&#xE03B;</i>
-                <span class="tooltiptext">Alterar</span>
-              </a>
-              <a class="tooltip edit" title="Edit">
-                <i class="material-icons">&#xE254;</i>
-                <span class="tooltiptext">Editar</span>
-              </a>
-              <a class="tooltip delete" title="Delete">
-                <i class="material-icons">&#xE872;</i>
-                <span class="tooltiptext">Excluir</span>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Kiwi</td>
-            <td>kilos</td>
-            <td>6.99</td>
-            <td>50</td>
-            <td>
-              <a class="tooltip add" title="Add">
-                <i class="material-icons">&#xE03B;</i>
-                <span class="tooltiptext">Alterar</span>
-              </a>
-              <a class="tooltip edit" title="Edit">
-                <i class="material-icons">&#xE254;</i>
-                <span class="tooltiptext">Editar</span>
-              </a>
-              <a class="tooltip delete" title="Delete">
-                <i class="material-icons">&#xE872;</i>
-                <span class="tooltiptext">Excluir</span>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>003</td>
-            <td>Bolacha</td>
-            <td>un</td>
-            <td>1.99</td>
-            <td>500</td>
-            <td>
-              <a class="tooltip add" title="Add">
-                <i class="material-icons">&#xE03B;</i>
-                <span class="tooltiptext">Alterar</span>
-              </a>
-              <a class="tooltip edit" title="Edit">
-                <i class="material-icons">&#xE254;</i>
-                <span class="tooltiptext">Editar</span>
-              </a>
-              <a class="tooltip delete" title="Delete">
-                <i class="material-icons">&#xE872;</i>
-                <span class="tooltiptext">Excluir</span>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>004</td>
-            <td>Alface</td>
-            <td>un</td>
-            <td>2.50</td>
-            <td>300</td>
-            <td>
-              <a class="tooltip add" title="Add">
-                <i class="material-icons">&#xE03B;</i>
-                <span class="tooltiptext">Alterar</span>
-              </a>
-              <a class="tooltip edit" title="Edit">
-                <i class="material-icons">&#xE254;</i>
-                <span class="tooltiptext">Editar</span>
-              </a>
-              <a class="tooltip delete" title="Delete">
-                <i class="material-icons">&#xE872;</i>
-                <span class="tooltiptext">Excluir</span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
+        <tbody id="itemsTable"></tbody>
       </table>
     </div>
 
     <!-- MODAL ADICIONAR -->
 
     <div id="adicionar" class="modal">
-      <form class="modal-content animate" action="./estoque.html" method="post">
+      <form class="modal-content animate">
         <div class="modal-box">
           <div class="modal-header">
-            <h2>Cadastrar Produto</h2>
+            <h2 id="modal-title">Cadastrar Produto</h2>
             <span
               onclick="document.getElementById('adicionar').style.display='none'"
               class="close"
@@ -158,7 +69,6 @@
             <table>
               <thead>
                 <tr>
-                  <th>Código</th>
                   <th>Descrição</th>
                   <th>Unidade</th>
                   <th>Custo Unitário</th>
@@ -168,14 +78,7 @@
               <tbody>
                 <td>
                   <input
-                    class="campos"
-                    type="number"
-                    placeholder="Código"
-                    name="codigo"
-                  />
-                </td>
-                <td>
-                  <input
+                    id="description"
                     class="campos"
                     type="text"
                     placeholder="Nome do produto"
@@ -183,20 +86,13 @@
                   />
                 </td>
                 <td>
-                  <div class="custom-select">
+                  <div id="unit" class="custom-select">
                     <select id="unidade"></select>
-
-                  <!-- <div class="custom-select">
-                    <select id="unidade">
-                      <option value="0">Unidade</option>
-                      <option value="1">Kilos</option>
-                      <option value="2">Unitário</option>
-                      <option value="3">Litros</option> --> 
-                    </select>
                   </div>
                 </td>
                 <td>
                   <input
+                    id="cost"
                     class="campos"
                     type="number"
                     placeholder="Custo"
@@ -205,6 +101,7 @@
                 </td>
                 <td>
                   <input
+                    id="quantity"
                     class="campos"
                     type="number"
                     placeholder="Quantidade"
@@ -223,7 +120,14 @@
             >
               Cancelar
             </button>
-            <button class="add-new" type="submit">Adicionar</button>
+            <button
+              id="addBtn"
+              type="button"
+              class="add-new"
+              onclick="document.getElementById('adicionar').style.display='none'"
+            >
+              Salvar
+            </button>
           </div>
         </div>
       </form>
@@ -231,6 +135,5 @@
 
     <script src="../js/script_estoque.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../sctp.js"></script>
   </body>
 </html>

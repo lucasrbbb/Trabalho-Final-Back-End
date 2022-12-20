@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const storeController = require("../controllers/StoreController");
+const storeController = require("../controllers/StoreConstroller");
 
-router.get("/", userController.obterDados);
+router.post("/save", storeController.postData);
 
-router.get("/:id", userController.obterPorId);
+router.get("/list", storeController.listData);
 
-router.post("/", userController.postarDados);
+router.delete("/delete/:id", storeController.deleteItem);
 
-router.delete("/:id", userController.deletarUsuario);
-
-router.put("/:id", userController.alterarUsuario);
+router.put("/update", storeController.updateItem);
 
 module.exports = router;
