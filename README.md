@@ -38,6 +38,7 @@
 ##### Davi Thiengo
 <ul>
   <li><strong>[Backend]</strong> Desenvolvimento rotas</li>
+  <li><strong>[Backend]</strong> Criação de script do Banco de Dados</li>
 </ul>
 
 ##### Bruna Guedes
