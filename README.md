@@ -47,6 +47,3 @@
   <li><strong>[Backend]</strong> Criação Banco de Dados </li>
 </ul>
 
-
-
-
