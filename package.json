@@ -1,0 +1,24 @@
+{
+  "name": "trabalho-final-back-end",
+  "version": "1.0.0",
+  "description": "Trabalho de conclusão da matéria Back-End do Professor Victor Dick no curso formação de programadores full-stack Connect do BioPark Toledo-PR",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasrbbb/Trabalho-Final-Back-End.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasrbbb/Trabalho-Final-Back-End/issues"
+  },
+  "homepage": "https://github.com/lucasrbbb/Trabalho-Final-Back-End#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
