@@ -7,7 +7,12 @@
 
 ## Linguagem utilizada: JavaScript com Node.js (Biblioteca: Express); Estilização do HTML em CSS. Banco de dados: MySQL.
 
-#
+## Iniciando o projeto:
+
+  Executar script.sql que está no projeto para criar o banco de dados e adicionar alguns itens na tabela tb_units.
+  Abrir a pasta no VSCode e dar 'npm i'
+  Rodar a aplicação com 'node server'
+  link da aplicação: 'http://localhost:3000/public/html/estoque.html'
 
 ### Alunos:
 
