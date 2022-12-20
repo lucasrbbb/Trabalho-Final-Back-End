@@ -3,6 +3,6 @@ Trabalho de conclusão da matéria Back-End do Professor Victor Dick no curso fo
 
 Divisão de Tarefas: 
 
-Front-end realizado em HTML e CSS: Lucas Renan Broglio e Bruna Guedes \n
+Front-end realizado em HTML e CSS: Lucas Renan Broglio e Bruna Guedes "\n"
 Banco de dados utilizando o MYSQL: Natália Rohr e Lorena Rodrigues
 Back-End utilizando JavaScript e Node e integração com o banco de dados: Natália Rohr, Davi Thiengo e Eduarda Smaniotto
