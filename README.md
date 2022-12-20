@@ -3,7 +3,7 @@
 # Disciplina: Back-End, Frameworks e API's (Connect 2022)
 
 ## Projeto: Sistema de Estoque
-## Sistema de Cadastro de Estoque com descriçao, unidade, quantidades. Com as opções de criar novo, editar descrição e apagar elemento.
+## Sistema de Cadastro de Estoque de produtos com descrição, unidade de medida, quantidades. A aplicação é um sistema CRUD que permite a criação de novos produtos no estoque, alteração de dados e quantidades, deleção de produtos e consulta. 
 
 ## Linguagem utilizada: JavaScript com Node.js (Biblioteca: Express); Estilização do HTML em CSS. Banco de dados: MySQL.
 
